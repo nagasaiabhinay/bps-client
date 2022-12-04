@@ -17,7 +17,7 @@ export default function PassCard(p) {
             userID: user?._id,
             userName: user?.Name,
             userEmail: user?.Email,
-            QRExpiryTime: new Date().getTime() + 5 * 60 * 1000,
+            QRExpiryTime: new Date().getTime() + 10 * 60 * 1000,
         },
         'decodePass',
     );
@@ -27,7 +27,7 @@ export default function PassCard(p) {
 
     const createQR = async () => {
         const qr = await QRCode.toDataURL(
-            `http://localhost:3001/verifyPass?token=${QRData}`,
+            `${window.location.origin}/verifyPass?token=${QRData}`,
         );
         setQRURL(qr);
     };
@@ -58,7 +58,7 @@ export default function PassCard(p) {
                 <Text>Pass Type = {props?.item?.passType}</Text>
                 <Text>Pass Status = {props?.item?.passStatus}</Text>
                 <Text>Pass expiry Date = {props?.item?.endDate}</Text>
-                <a href={`http://localhost:3001/verifyPass?token=${QRData}`}>
+                <a target="_blank" href={`${window.location.origin}/verifyPass?token=${QRData}`}>
                     open
                 </a>
             </div>

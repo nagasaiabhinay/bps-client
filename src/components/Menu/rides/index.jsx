@@ -2,8 +2,11 @@ import { Divider, SimpleGrid, Title } from '@mantine/core';
 import { useGlobalStore } from '@store/index';
 import useSWR from 'swr';
 import PassCard from './passCard';
+import { useRouter } from 'next/router';
 
 const Rides = () => {
+
+
     const user = useGlobalStore((state) => state.user);
     const { data, isValidating } = useSWR(
         `/auth/passes/get-all-passes?userID=${user?._id}`,
