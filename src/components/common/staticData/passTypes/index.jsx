@@ -6,12 +6,6 @@ export default [
         days: 1,
     },
     {
-        value: 'day-pass',
-        label: 'Day Pass',
-        description: 'Pass is valid for 24 hours',
-        days: 1,
-    },
-    {
         value: 'weekly-pass',
         label: 'Weekly Pass',
         description: 'Pass is valid for 7 days',

@@ -3,8 +3,10 @@ import { timings } from '@components/common/staticData';
 import { Button, NumberInput, Select, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
+import { useSWRConfig } from 'swr'
 
 const AdminBusRouteCreateNew = () => {
+    const { mutate } = useSWRConfig()
     const CreateNewRouteForm = useForm({
         initialValues: {
             routeFrom: '',
@@ -98,6 +100,7 @@ const AdminBusRouteCreateNew = () => {
             const api = Axios.init();
             const { data } = await api.auth.createRoutes(e);
             CreateNewRouteForm.reset();
+            mutate('/auth/routes/get-all-routes')
             showNotification({
                 title: data?.message,
             });
@@ -175,6 +178,7 @@ const AdminBusRouteCreateNew = () => {
                     hideControls
                     label='Bus Fare'
                     required
+                    precision={2}
                     placeholder='Bus Fare'
                     description='Per Mile'
                     className='bps-w-full'
@@ -185,6 +189,7 @@ const AdminBusRouteCreateNew = () => {
                     hideControls
                     label='Total Distance'
                     required
+                    precision={2}
                     placeholder='Total Distance'
                     description='Miles'
                     className='bps-w-full'
@@ -208,6 +213,7 @@ const AdminBusRouteCreateNew = () => {
                     withAsterisk
                     label='Bus Operator Number'
                     required
+                    maxLength={10}
                     placeholder='Bus Operator Number'
                     min={0}
                     hideControls

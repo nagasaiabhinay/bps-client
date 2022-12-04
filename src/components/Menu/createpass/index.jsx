@@ -6,11 +6,11 @@ import { useForm } from '@mantine/form';
 import { useId } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
 import { useGlobalStore } from '@store/index';
+import dayjs from 'dayjs';
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import useSWR from 'swr';
-
-export default function CreatePass() {
+ const CreatePass=()=> {
     const RegionData = useSWR('/auth/regions/get-all-regions');
     const RoutesData = useSWR('/auth/routes/get-all-routes');
     const user = useGlobalStore((state) => state.user);
@@ -169,10 +169,10 @@ export default function CreatePass() {
 
     return (
         <div className=' bps-h-full bps-flex bps-flex-col bps-items-center bps-gap-3'>
-            <Title>Create Pass</Title>
+            <Title>Buy Pass</Title>
             <Divider className=' bps-w-full' />
             <div className=' bps-h-full bps-w-full bps-flex bps-flex-col lg:bps-flex-row bps-gap-3'>
-                <Card className=' bps-w-full lg:bps-w-full bps-h-full'>
+                <div className='bps-p-5 bps-rounded-lg bps-w-full lg:bps-w-full bps-h-full'>
                     <form
                         onSubmit={createPassForm.onSubmit(async (values) => {
                             showNotification({
@@ -272,6 +272,7 @@ export default function CreatePass() {
                             <DatePicker
                                 className=' bps-flex-1'
                                 required
+                                minDate={dayjs(new Date()).toDate()}
                                 label='Start Date'
                                 placeholder='Enter your start date'
                                 type='date'
@@ -413,7 +414,7 @@ export default function CreatePass() {
                                 shippingAddress={false}
                                 email={user?.Email}
                                 amount={
-                                    parseInt(
+                                    Number(
                                         (createPassForm.values.passCategory ===
                                             'a2b' &&
                                             selectedRoute[0]?.Bus?.Fare *
@@ -441,11 +442,12 @@ export default function CreatePass() {
                             />
                         )}
                     </form>
-                </Card>
-                {/* <Card className=" bps-p-0 bps-relative bps-w-full  lg:bps-w-[70%] bps-h-full">
-                    <Image src="https://developers.google.com/static/maps/images/landing/dds.png" alt="Sample" fill />
-                </Card> */}
+                </div>
+               
             </div>
         </div>
     );
 }
+
+
+export default CreatePass;

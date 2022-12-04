@@ -2,8 +2,10 @@ import Axios from '@axios/index';
 import { Button, NumberInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
+import { useSWRConfig } from 'swr'
 
 const AdminBusRegionCreateNew = () => {
+    const { mutate } = useSWRConfig()
     const CreateNewRegionForm = useForm({
         initialValues: {
             Name: '',
@@ -27,6 +29,7 @@ const AdminBusRegionCreateNew = () => {
             showNotification({
                 message: data?.message,
             });
+            mutate('/auth/regions/get-all-regions')
         }
     };
 
@@ -51,6 +54,7 @@ const AdminBusRegionCreateNew = () => {
                     placeholder='Per Mile'
                     className='bps-w-full'
                     hideControls
+                    precision={2}
                     min={0}
                     {...CreateNewRegionForm.getInputProps('PerMile')}
                 />
@@ -60,6 +64,7 @@ const AdminBusRegionCreateNew = () => {
                     placeholder='Sq Miles'
                     className='bps-w-full'
                     hideControls
+                    precision={2}
                     min={0}
                     {...CreateNewRegionForm.getInputProps('SqMiles')}
                 />

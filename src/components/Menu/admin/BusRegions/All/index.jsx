@@ -1,10 +1,10 @@
-import { Table, TextInput } from '@mantine/core';
+import { Button, Table, TextInput } from '@mantine/core';
 import React from 'react';
 import useSWR from 'swr';
 import TableRow from './tableRow';
 
 const AdminBusRegionsAll = () => {
-    const { data, isValidating } = useSWR('/auth/regions/get-all-regions');
+    const { data, isValidating,mutate } = useSWR('/auth/regions/get-all-regions');
 
     const [search, setSearch] = React.useState('');
 
@@ -20,7 +20,7 @@ const AdminBusRegionsAll = () => {
                         <th>Region</th>
                     </tr>
                 </thead>
-                <tbody>{data && data?.regions?.filter((_, i) => _.Name.toLowerCase().includes(search.toLowerCase()))?.map((_, i) => <TableRow key={i} item={_} />)}</tbody>
+                <tbody>{data && data?.regions?.filter((_, i) => _.Name.toLowerCase().includes(search.toLowerCase()))?.map((_, i) => <TableRow  key={i} item={_} />)}</tbody>
             </Table>
         </div>
     );

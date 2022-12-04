@@ -1,8 +1,12 @@
-import Auth from '@components/auth'
-import React from 'react'
+import Login from '@components/auth';
+import AuthLayout from '@components/layouts/authlayout';
 
-export default function AuthScreen() {
-  return (
-    <Auth/>
-  )
+function AuthScreen() {
+    return <Login />;
+}
+
+export default AuthScreen;
+
+AuthScreen.getLayout = function getLayout(page) {
+    return <AuthLayout>{page}</AuthLayout>;
 }

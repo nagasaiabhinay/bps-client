@@ -1,4 +1,5 @@
 import Auth from '@components/auth';
+import AuthLayout from '@components/layouts/authlayout';
 import RootLayout from '@components/layouts/rootLayout';
 import { showNotification } from '@mantine/notifications';
 import { useGlobalStore } from '@store/index';
@@ -23,5 +24,5 @@ function LogoutScreen() {
 export default LogoutScreen;
 
 LogoutScreen.getLayout = function getLayout(page) {
-    return <RootLayout>{page}</RootLayout>;
+    return <AuthLayout>{page}</AuthLayout>;
 };

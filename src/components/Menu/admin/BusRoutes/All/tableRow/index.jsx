@@ -1,10 +1,11 @@
 import Axios from '@axios/index';
 import { timings } from '@components/common/staticData';
 
-import { Button, createStyles, Group, Modal, NumberInput, Select, Switch, TextInput } from '@mantine/core';
+import { Button, createStyles,Popover,Text, Group, Modal, NumberInput, Select, Switch, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import React from 'react';
+import { useSWRConfig } from 'swr'
 
 const useStyles = createStyles((theme) => ({
     body: {
@@ -32,8 +33,10 @@ const useStyles = createStyles((theme) => ({
 
 const TableRow = (p) => {
     const { classes } = useStyles();
+    const { mutate } = useSWRConfig()
     const [opened, setOpened] = React.useState(false);
     const [editMode, setEditMode] = React.useState(false);
+    const [deleteOpened, setDeleteOpened] = React.useState(false);
 
     const props = {
         key: p.key,
@@ -47,11 +50,12 @@ const TableRow = (p) => {
             routeTimings: props.item.Timings || '',
             busName: props.item.Bus.Name || '',
             busType: props.item.Bus.Type || '',
-            busSeats: parseInt(props.item.Bus.Seats) || null,
-            busFare: parseInt(props.item.Bus.Fare) || null,
+            busSeats: Number(props.item.Bus.Seats) || null,
+            busFare: Number(props.item.Bus.Fare) || null,
+            busDistance: Number(props.item.Bus.Distance) || null,
             busNumber: props.item.Bus.Number || '',
             busOperatorName: props.item.BusOperator.Name || '',
-            busOperatorNumber: parseInt(props.item.BusOperator.Number) || null
+            busOperatorNumber: Number(props.item.BusOperator.Number) || null
         },
         validate: {
             routeFrom: (value) => {
@@ -89,6 +93,11 @@ const TableRow = (p) => {
                     return 'Bus Fare is required';
                 }
             },
+            busDistance: (value) => {
+                if (!value) {
+                    return 'Bus Distance is required';
+                }
+            },
             busNumber: (value) => {
                 if (!value) {
                     return 'Bus Number is required';
@@ -114,6 +123,7 @@ const TableRow = (p) => {
                 BusType: values.busType,
                 BusSeats: values.busSeats,
                 BusFare: values.busFare,
+                BusDistance: values.busDistance,
                 BusNumber: values.busNumber,
                 BusOperatorName: values.busOperatorName,
                 BusOperatorNumber: values.busOperatorNumber
@@ -128,9 +138,21 @@ const TableRow = (p) => {
             showNotification({
                 title: data?.message
             });
+            mutate('/auth/routes/get-all-routes')
             setOpened(false);
         }
     };
+
+    const DeleteRoute = async () => {
+        const api = Axios.init();
+    const { data } = await api.auth.deleteRouteById(props?.item?._id);
+    showNotification({
+      message: data?.message,
+    });
+    mutate('/auth/routes/get-all-routes')
+    setDeleteOpened(false);
+    setOpened(false);
+    }
 
     return (
         <>
@@ -245,12 +267,26 @@ const TableRow = (p) => {
                         min={0}
                         hideControls
                         label="Bus Fare"
+                        precision={2}
                         withAsterisk={editMode}
                         placeholder="Bus Fare"
                         description="Per KM/Mile"
                         className="bps-w-full"
                         {...EditRouteForm.getInputProps('busFare')}
                     />
+                     <NumberInput
+                    min={0}
+                    variant={!editMode ? 'unstyled' : 'default'}
+                    readOnly={!editMode}
+                    hideControls
+                    label='Total Distance'
+                    withAsterisk={editMode}
+                    precision={2}
+                    placeholder='Total Distance'
+                    description='Miles'
+                    className='bps-w-full'
+                    {...EditRouteForm.getInputProps('busDistance')}
+                />
                     <TextInput
                         variant={!editMode ? 'unstyled' : 'default'}
                         readOnly={!editMode}
@@ -286,6 +322,33 @@ const TableRow = (p) => {
                         </Button>
                     )}
                 </form>
+                {!editMode && (
+            <Popover opened={deleteOpened} width={300} trapFocus position="bottom" withArrow shadow="md">
+            <Popover.Target>
+            <Button className="bps-w-full" onClick={()=>{
+                setDeleteOpened(true)
+            }}  variant="outline" color="red">
+              Delete Route
+            </Button>
+            </Popover.Target>
+            <Popover.Dropdown sx={(theme) => ({ background: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white })}>
+              <div className="bps-w-full bps-flex bps-flex-col bps-gap-3">
+
+              <Text>Do you wish to Delete this Route</Text>
+              <div className="bps-w-full bps-flex bps-flex-row bps-gap-3">
+              <Button onClick={()=>{
+                setDeleteOpened(false)
+              }}  className="bps-w-full" variant="outline" color="red">
+              No
+            </Button>
+            <Button onClick={DeleteRoute} className="bps-w-full" variant="filled" color="red">
+              Yes
+            </Button>
+              </div>
+              </div>
+            </Popover.Dropdown>
+          </Popover>
+        )}
             </Modal>
         </>
     );

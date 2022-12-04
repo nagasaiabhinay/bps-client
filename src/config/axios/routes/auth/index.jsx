@@ -45,6 +45,16 @@ const auth = {
                     id: id,
                 });
             },
+            deleteRegionById(id){
+                return base.delete(`/auth/regions/delete-region-by-id`, {
+                    id: id,
+                });
+            },
+            deleteRouteById(id){
+                return base.delete(`/auth/routes/delete-route-by-id`, {
+                    id: id,
+                });
+            }
         };
     },
 };

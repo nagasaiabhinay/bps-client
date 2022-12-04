@@ -2,7 +2,7 @@ import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
 const themeStore = (set) => ({
-    theme: 'dark',
+    theme: 'light',
     setTheme: (theme) => set((state) => ({ ...state, theme })),
 });
 

@@ -1,9 +1,12 @@
 import RootLayout from '@components/layouts/rootLayout';
 import Rides from '@components/Menu/rides';
 import { ProtectedRoute } from '@hooks/routesValidator';
+import { useGlobalStore } from '@store/index';
+import NotFoundPage from '@components/404';
 
 function RidesScreen() {
-    return <Rides />;
+    const user = useGlobalStore(e => e.user);
+    return  user?.Role?.includes('customer') ? <Rides />: <NotFoundPage/>;
 }
 
 export default RidesScreen;

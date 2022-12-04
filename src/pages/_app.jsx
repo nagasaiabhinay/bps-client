@@ -8,13 +8,17 @@ import Head from 'next/head';
 import React from 'react';
 import { SWRConfig } from 'swr';
 
-function MyApp({ Component, pageProps }) {
+const MyApp=({ Component, pageProps })=> {
     const isBrowser = () => typeof window !== 'undefined';
     const api = Axios.init();
     const theme = useThemeStore((state) => state.theme);
+    const setTheme = useThemeStore(s=>s.setTheme)
     const [colorScheme, setColorScheme] = React.useState(theme);
-    const toggleColorScheme = (value) =>
+    const toggleColorScheme = (value) =>{
         setColorScheme(value || (colorScheme === 'light' ? 'dark' : 'light'));
+        setTheme(value || (colorScheme === 'light' ? 'dark' : 'light'))
+    }
+        
     const getLayout = Component.getLayout || ((page) => page);
 
     return (
@@ -40,6 +44,10 @@ function MyApp({ Component, pageProps }) {
                         withNormalizeCSS
                         theme={{
                             colorScheme,
+                            defaultRadius: 'sm',
+                            primaryColor: 'orange',
+                            dir: 'ltr',
+                            loader: 'dots',
                         }}
                     >
                         <NotificationsProvider>

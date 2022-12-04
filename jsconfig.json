@@ -14,7 +14,8 @@
             "@validations/*": ["./src/config/validations/*"],
             "@styles/*": ["./src/styles/*"],
             "@layouts/*": ["./src/components/layouts/*"],
-            "@hooks/*": ["./src/hooks/*"]
+            "@hooks/*": ["./src/hooks/*"],
+            "@assets/*": ["./src/assets/*"],
         }
     },
     "exclude": ["node_modules", "**/node_modules/*"]
