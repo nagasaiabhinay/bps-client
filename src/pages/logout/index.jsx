@@ -4,12 +4,12 @@ import RootLayout from '@components/layouts/rootLayout';
 import { showNotification } from '@mantine/notifications';
 import { useGlobalStore } from '@store/index';
 import React from 'react';
-import { auth } from 'src/config/firebase';
+import firebase from 'src/config/firebase';
 
 function LogoutScreen() {
     const reset = useGlobalStore((state) => state.reset);
     React.useEffect(() => {
-        auth.signOut().then(() => {
+        firebase.auth.signOut().then(() => {
             reset();
             showNotification({
                 title: 'Logged out',

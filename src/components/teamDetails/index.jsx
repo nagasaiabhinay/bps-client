@@ -60,6 +60,7 @@ const TeamDetails = () => {
                 <div className="bps-rounded-full bps-overflow-hidden">
                   <Image
                     width={40}
+                    alt="Image"
                     height={40}
                     src="https://i.ibb.co/Hd8Bc0W/Group-2-1.png"
                     withPlaceholder
@@ -76,6 +77,7 @@ const TeamDetails = () => {
                   <Image
                     width={40}
                     height={40}
+                    alt="Image"
                     src="https://i.ibb.co/xs3Zcr7/Group-3.png"
                     withPlaceholder
                   />
@@ -91,6 +93,7 @@ const TeamDetails = () => {
                   <Image
                     width={40}
                     height={40}
+                    alt="Image"
                     src="https://i.ibb.co/1qCj3rb/Group-2-2.png"
                     withPlaceholder
                   />
@@ -105,6 +108,7 @@ const TeamDetails = () => {
                 <div className="bps-rounded-full bps-overflow-hidden">
                   <Image
                     width={40}
+                    alt="Image"
                     height={40}
                     src="https://i.ibb.co/6nnbq8N/Group-2-3.png"
                     withPlaceholder
@@ -121,6 +125,7 @@ const TeamDetails = () => {
                   <Image
                     width={40}
                     height={40}
+                    alt="Image"
                     src="https://i.ibb.co/vkNLcbw/Intersect.png"
                     withPlaceholder
                   />
@@ -136,6 +141,7 @@ const TeamDetails = () => {
                   <Image
                     width={40}
                     height={40}
+                    alt="Image"
                     src="https://i.ibb.co/CbNFsWP/Group-2-4.png"
                     withPlaceholder
                   />
@@ -151,6 +157,7 @@ const TeamDetails = () => {
                   <Image
                     width={40}
                     height={40}
+                    alt="Image"
                     src="https://i.ibb.co/5cSHMs0/Group-2-5.png"
                     withPlaceholder
                   />
@@ -165,6 +172,7 @@ const TeamDetails = () => {
                 <div className="bps-rounded-full bps-overflow-hidden">
                   <Image
                     width={40}
+                    alt="Image"
                     height={40}
                     src="https://i.ibb.co/DMYNqKQ/Group-2-6.png"
                     withPlaceholder
@@ -181,6 +189,7 @@ const TeamDetails = () => {
                   <Image
                     width={40}
                     height={40}
+                    alt="Image"
                     src="https://i.ibb.co/H4vp0sJ/Group-2-7.png"
                     withPlaceholder
                   />
@@ -196,6 +205,7 @@ const TeamDetails = () => {
                   <Image
                     width={40}
                     height={40}
+                    alt="Image"
                     src="https://i.ibb.co/GVvLP7f/Group-2-8.png"
                     withPlaceholder
                   />

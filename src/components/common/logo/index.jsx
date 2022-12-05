@@ -19,12 +19,7 @@ export default function Logo(props) {
                 onClick={propsData?.onClicks?.root}
                 className={`bps-flex bps-cursor-pointer bps-flex-row bps-items-center bps-gap-2 ${propsData?.classNames?.root}`}
             >
-                {/* <img
-                    onClick={propsData?.onClicks?.image}
-                    className={`${propsData?.classNames?.image}  bps-w-12 bps-h-12`}
-                    src='/logo.svg'
-                    alt='logo'
-                /> */}
+                
                 <text
                     className=' bps-text-3xl bps-font-bold'
                     onClick={propsData?.onClicks?.text}

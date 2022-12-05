@@ -40,6 +40,7 @@ export default function PassCard(p) {
             <Image
                 width={400}
                 height={400}
+                alt="Image"
                 withPlaceholder
                 className=' bps-rounded-lg'
                 src={active ? qrURL : ''}

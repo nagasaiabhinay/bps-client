@@ -5,7 +5,7 @@ import { useGlobalStore } from '@store/index';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { auth } from 'src/config/firebase';
+import firebase from 'src/config/firebase';
 
 export default function Auth() {
     const router = useRouter();
@@ -16,7 +16,7 @@ export default function Auth() {
 
     const LoginWithGoogle = async () => {
         const api = Axios.init();
-        signInWithPopup(auth, new GoogleAuthProvider())
+        signInWithPopup(firebase.auth, new GoogleAuthProvider())
             .then(async (result) => {
                 const user = result.user;
                 const { data } = await api.auth.createUser({

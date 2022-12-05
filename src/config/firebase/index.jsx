@@ -1,4 +1,4 @@
-import firebase, { initializeApp } from 'firebase/app';
+import * as firebase from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -10,9 +10,9 @@ const firebaseConfig = {
     appId: '1:145689649723:web:c678a6c66e2c75eb39f21e',
 };
 
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 
 const auth = getAuth();
 auth.languageCode = auth.useDeviceLanguage();
-export { auth, firebase };
+export default { auth, firebase };
 console.info(app.name ? 'Firebase Mode Activated!' : 'Firebase not working :(');
