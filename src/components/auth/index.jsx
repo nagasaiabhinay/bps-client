@@ -35,8 +35,6 @@ export default function Auth() {
   };
 
   React.useEffect(() => {
-    let ignore = false;
-    if (!ignore) {
       if (session?.user) {
         if (!user) {
           if (!token) {
@@ -45,10 +43,6 @@ export default function Auth() {
           }
         }
       }
-    }
-    return () => {
-      ignore = true;
-    };
   }, [session]);
 
  
