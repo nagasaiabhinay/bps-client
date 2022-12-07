@@ -1,19 +1,21 @@
 import { BackgroundImage, useMantineTheme } from "@mantine/core";
 import Image1 from "./";
-import { useSession } from "next-auth/react";
 import Loading from "@components/common/loading";
 import React from 'react'
 import { useRouter } from "next/router";
 
+import { useSession, signIn, signOut } from "next-auth/react";
+
 export default function AuthLayout({ children }) {
   const { data: session } = useSession();
   const router = useRouter()
+  // signOut()
 
-  React.useEffect(() => {
-      if (session) {
-        router.replace("/");
-      }
-  }, [session]);
+  // React.useEffect(() => {
+  //     if (session) {
+  //       router.replace("/");
+  //     }
+  // }, [session]);
 
   const theme = useMantineTheme();
   return (
@@ -36,7 +38,7 @@ export default function AuthLayout({ children }) {
               </h1>
             </div>
             <div className="bps-flex bps-items-center bps-justify-center bps-w-full bps-h-full">
-              {session ? <Loading/> : children}
+              {children}
             </div>
           </div>
         </div>

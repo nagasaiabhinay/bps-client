@@ -16,6 +16,8 @@ import {
   Ticket,
   User,
 } from "phosphor-react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { showNotification } from "@mantine/notifications";
 
 const SideBarIcon = (props) => {
   const router = useRouter();
@@ -66,6 +68,8 @@ const SideBarIcon = (props) => {
 export default function RootLayoutSidebar(props) {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const user = useGlobalStore((e) => e.user);
+  const router = useRouter()
+  const reset = useGlobalStore((e) => e.reset);
   const theme = useMantineTheme();
   const dark = colorScheme === "dark";
   const propsData = {
@@ -299,12 +303,38 @@ export default function RootLayoutSidebar(props) {
                     " bps-shadow-none !bps-bg-transparent bps-p-0"
                   } bps-shadow-lg bps-flex-col bps-flex bps-gap-3 bps-items-center bps-justify-center bps-p-2 bps-rounded-md bps-cursor-pointer`}
                 >
-                  <SideBarIcon
-                    key={"Log-out"}
-                    isOpen={propsData?.isOpen}
-                    title="Log-out"
-                    route="/logout"
-                  />
+                  <div
+                    className={` ${
+                      theme.colorScheme === "dark"
+                        ? "bps-text-white"
+                        : "bps-text-black"
+                    } bps-no-underline `}
+                    onClick={() => {
+                      signOut();
+                      reset();
+                      showNotification({
+                        title: "Logged out",
+                        message: "You have been logged out",
+                      });
+                      signOut();
+                      router.replace("/auth");
+                    }}
+                  >
+                    <div
+                      className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
+                        propsData?.isOpen && "bps-justify-center"
+                      } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
+                    >
+                      <text
+                        className={` ${
+                          propsData?.isOpen &&
+                          "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
+                        }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
+                      >
+                        Logout
+                      </text>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

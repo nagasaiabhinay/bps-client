@@ -19,7 +19,6 @@ export default function Auth() {
   const setToken = useGlobalStore((state) => state.setToken);
   const token = useGlobalStore((state) => state.token);
 
-
   const CreateUser = async () => {
     const api = Axios.init();
     const { data } = await api.auth.createUser({
@@ -33,25 +32,18 @@ export default function Auth() {
       title: "Login Successful",
       message: "Welcome to the Bus Pass System",
     });
+    setLoading(false);
     router.push("/");
-  }
+  };
 
   React.useEffect(() => {
     let ignore = false;
     if (!ignore) {
-      console.log("0");
       if (session?.user) {
-        console.log("1");
         if (!user) {
-          console.log("2");
           if (!token) {
-            console.log("3");
-            console.log({
-              Email: session?.user?.email,
-              Name: session?.user?.name,
-              firebaseUID: uuidv4(),
-            });
-            CreateUser()
+            setLoading(true);
+            CreateUser();
           }
         }
       }
@@ -94,11 +86,12 @@ export default function Auth() {
       </Text>
       <div className=" bps-flex bps-flex-col bps-flex-1 bps-gap-3">
         <Group className=" bps-flex bps-flex-col bps-flex-1 bps-gap-3">
-          {session ? (
-            <Button onClick={() => signOut()}>Sign Out</Button>
-          ) : (
-            <Button onClick={() => signIn()}>SignIn with Google</Button>
-          )}
+          {!loading &&
+            (session ? (
+              <Button onClick={() => signOut()}>Sign Out</Button>
+            ) : (
+              <Button onClick={() => signIn()}>SignIn with Google</Button>
+            ))}
         </Group>
       </div>
     </Card>
