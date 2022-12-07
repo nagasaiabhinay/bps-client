@@ -4,7 +4,6 @@ import RootLayout from "@components/layouts/rootLayout";
 import { showNotification } from "@mantine/notifications";
 import { useGlobalStore } from "@store/index";
 import React from "react";
-import firebase from "src/config/firebase";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from 'next/router';
 
