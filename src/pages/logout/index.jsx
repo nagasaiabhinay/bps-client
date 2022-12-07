@@ -5,19 +5,20 @@ import { showNotification } from "@mantine/notifications";
 import { useGlobalStore } from "@store/index";
 import React from "react";
 import firebase from "src/config/firebase";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 function LogoutScreen() {
   const reset = useGlobalStore((state) => state.reset);
   React.useEffect(() => {
     let unSub = false;
     if (!unSub) {
-      firebase.auth.signOut().then(() => {
-        reset();
-        showNotification({
-          title: "Logged out",
-          message: "You have been logged out",
-        });
+      signOut();
+      reset();
+      showNotification({
+        title: "Logged out",
+        message: "You have been logged out",
       });
+      router.replace("/auth");
     }
     return () => {
       unSub = true;
