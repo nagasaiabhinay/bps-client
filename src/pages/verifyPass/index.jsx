@@ -20,32 +20,39 @@ export default function VerifyPass() {
   const [isCompleted, setIsCompleted] = React.useState(false);
 
   React.useEffect(() => {
-    const res = jwt.decode(token);
+    let unSub = false;
+    if (!unSub) {
+      const res = jwt.decode(token);
 
-    if (res?.QRExpiryTime < new Date().getTime()) {
-      setData((prev) => ({
-        ...prev,
-        ValidQR: false,
-      }));
-    } else {
-      setData((prev) => ({
-        ...prev,
-        ValidQR: true,
-        pass: res,
-      }));
+      if (res?.QRExpiryTime < new Date().getTime()) {
+        setData((prev) => ({
+          ...prev,
+          ValidQR: false,
+        }));
+      } else {
+        setData((prev) => ({
+          ...prev,
+          ValidQR: true,
+          pass: res,
+        }));
+      }
+
+      if (res?.endDate < new Date().getTime()) {
+        setData((prev) => ({
+          ...prev,
+          ValidPass: false,
+        }));
+      } else {
+        setData((prev) => ({
+          ...prev,
+          ValidPass: true,
+        }));
+      }
     }
 
-    if (res?.endDate < new Date().getTime()) {
-      setData((prev) => ({
-        ...prev,
-        ValidPass: false,
-      }));
-    } else {
-      setData((prev) => ({
-        ...prev,
-        ValidPass: true,
-      }));
-    }
+    return () => {
+      unSub = true;
+    };
   }, [token]);
 
   return (
@@ -104,10 +111,10 @@ export default function VerifyPass() {
             <div className="bps-w-full bps-text-3xl">
               <Text>
                 Pass Category:{" "}
-                {
-                    `${data?.pass?.category[0]?.toUpperCase()}${data?.pass?.category?.slice(1,6)}`
-
-                }
+                {`${data?.pass?.category[0]?.toUpperCase()}${data?.pass?.category?.slice(
+                  1,
+                  6
+                )}`}
               </Text>
               {data?.pass?.category === "a2b" && (
                 <>

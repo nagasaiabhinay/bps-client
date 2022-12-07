@@ -14,6 +14,11 @@ import { IconContext } from "phosphor-react";
 import React from "react";
 
 const TeamDetails = () => {
+
+  
+
+
+
   return (
     <Card className="bps-w-full bps-flex bps-flex-col bps-gap-3 bps-text-xl">
       <div className="bps-flex bps-w-full bps-justify-between bps-flex-col bps-items-start bps-gap-3">

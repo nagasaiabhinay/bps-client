@@ -7,8 +7,9 @@ import '@styles/globals.css';
 import Head from 'next/head';
 import React from 'react';
 import { SWRConfig } from 'swr';
+import {SessionProvider} from 'next-auth/react'
 
-const MyApp=({ Component, pageProps })=> {
+const MyApp=({ Component, pageProps,session })=> {
     const isBrowser = () => typeof window !== 'undefined';
     const api = Axios.init();
     const theme = useThemeStore((state) => state.theme);
@@ -52,9 +53,11 @@ const MyApp=({ Component, pageProps })=> {
                     >
                         <NotificationsProvider>
                             <ModalsProvider>
+                                <SessionProvider session={session}>
                                 <div className=' bps-flex bps-flex-col bps-relative bps-w-screen bps-h-screen'>
                                     {getLayout(<Component {...pageProps} />)}
                                 </div>
+                                </SessionProvider>
                             </ModalsProvider>
                         </NotificationsProvider>
                     </MantineProvider>

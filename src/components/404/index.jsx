@@ -39,7 +39,7 @@ const NotFoundPage=()=> {
                 <text
                         className={`  bps-text-xl bps-whitespace-nowrap bps-font-bold`}
                     >
-                        CreatePass
+                        Buy Pass
                     </text>
             </Link>
             </List.Item>

@@ -75,39 +75,6 @@ export default function RootLayoutSidebar(props) {
 
   const SidebarMenu = [
     {
-      roleAccess: "admin",
-      title: "Admin",
-      route: "admin",
-    },
-    {
-      roleAccess: "admin",
-      title: "Routes",
-      subMenu: [
-        {
-          title: "All Routes",
-          route: "admin/routes/all-routes",
-        },
-        {
-          title: "Create new route",
-          route: "admin/routes/create-new-route",
-        },
-      ],
-    },
-    {
-      roleAccess: "admin",
-      title: "Regions",
-      subMenu: [
-        {
-          title: "All Regions",
-          route: "admin/regions/all-regions",
-        },
-        {
-          title: "Create new route",
-          route: "admin/regions/create-new-region",
-        },
-      ],
-    },
-    {
       roleAccess: "customer",
       title: "Home",
       route: "",
@@ -161,144 +128,160 @@ export default function RootLayoutSidebar(props) {
                   propsData?.isOpen && "bps-items-center"
                 } bps-justify-center`}
               >
-                <Accordion variant="filled" defaultValue="Routes">
-                <Accordion.Item value={"admin"}>
-                    <Accordion.Control chevron={()=>{
-                        null
-                    }} className=' bps-text-xl'>
-                    <Link
-                  href={`/admin`}
-                  className={` ${
-                    theme.colorScheme === "dark"
-                      ? "bps-text-white"
-                      : "bps-text-black"
-                  } bps-no-underline `}
-                >
-                  <div
-                    className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
-                      propsData?.isOpen && "bps-justify-center"
-                    } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
-                  >
-                    <text
-                      className={` ${
-                        propsData?.isOpen &&
-                        "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
-                      }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
-                    >
-                      Admin
-                    </text>
-                  </div>
-                </Link>
-                    </Accordion.Control>
-                    
-                  </Accordion.Item>
-                  <Accordion.Item value={"Routes"}>
-                    <Accordion.Control className=' bps-text-xl'>Routes</Accordion.Control>
-                    <Accordion.Panel>
-                    <div className=" bps-flex bps-flex-col bps-gap-5">
-                    <Link
-                  href={`/admin/routes/all-routes`}
-                  className={` ${
-                    theme.colorScheme === "dark"
-                      ? "bps-text-white"
-                      : "bps-text-black"
-                  } bps-no-underline `}
-                >
-                  <div
-                    className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
-                      propsData?.isOpen && "bps-justify-center"
-                    } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
-                  >
-                    <text
-                      className={` ${
-                        propsData?.isOpen &&
-                        "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
-                      }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
-                    >
-                      All Routes
-                    </text>
-                  </div>
-                </Link>
-                <Link
-                  href={`/admin/routes/create-new-route`}
-                  className={` ${
-                    theme.colorScheme === "dark"
-                      ? "bps-text-white"
-                      : "bps-text-black"
-                  } bps-no-underline `}
-                >
-                  <div
-                    className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
-                      propsData?.isOpen && "bps-justify-center"
-                    } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
-                  >
-                    <text
-                      className={` ${
-                        propsData?.isOpen &&
-                        "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
-                      }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
-                    >
-                      Create new route
-                    </text>
-                  </div>
-                </Link>
-                    </div>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                  <Accordion.Item value={"Regions"}>
-                    <Accordion.Control className=' bps-text-xl'>Regions</Accordion.Control>
-                    <Accordion.Panel>
-                    <div className=" bps-flex bps-flex-col bps-gap-5">
-                    <Link
-                  href={`/admin/routes/all-regions`}
-                  className={` ${
-                    theme.colorScheme === "dark"
-                      ? "bps-text-white"
-                      : "bps-text-black"
-                  } bps-no-underline `}
-                >
-                  <div
-                    className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
-                      propsData?.isOpen && "bps-justify-center"
-                    } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
-                  >
-                    <text
-                      className={` ${
-                        propsData?.isOpen &&
-                        "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
-                      }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
-                    >
-                      All Regions
-                    </text>
-                  </div>
-                </Link>
-                <Link
-                  href={`/admin/routes/create-new-region`}
-                  className={` ${
-                    theme.colorScheme === "dark"
-                      ? "bps-text-white"
-                      : "bps-text-black"
-                  } bps-no-underline `}
-                >
-                  <div
-                    className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
-                      propsData?.isOpen && "bps-justify-center"
-                    } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
-                  >
-                    <text
-                      className={` ${
-                        propsData?.isOpen &&
-                        "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
-                      }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
-                    >
-                      Create new region
-                    </text>
-                  </div>
-                </Link>
-                    </div>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                </Accordion>
+                {user?.Role?.includes("admin") ? (
+                  <Accordion variant="filled" defaultValue="Routes">
+                    <Accordion.Item value={"admin"}>
+                      <Accordion.Control
+                        chevron={() => {
+                          null;
+                        }}
+                        className=" bps-text-xl"
+                      >
+                        <Link
+                          href={`/admin`}
+                          className={` ${
+                            theme.colorScheme === "dark"
+                              ? "bps-text-white"
+                              : "bps-text-black"
+                          } bps-no-underline `}
+                        >
+                          <div
+                            className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
+                              propsData?.isOpen && "bps-justify-center"
+                            } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
+                          >
+                            <text
+                              className={` ${
+                                propsData?.isOpen &&
+                                "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
+                              }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
+                            >
+                              Admin
+                            </text>
+                          </div>
+                        </Link>
+                      </Accordion.Control>
+                    </Accordion.Item>
+                    <Accordion.Item value={"Routes"}>
+                      <Accordion.Control className=" bps-text-xl">
+                        Routes
+                      </Accordion.Control>
+                      <Accordion.Panel>
+                        <div className=" bps-flex bps-flex-col bps-gap-5">
+                          <Link
+                            href={`/admin/routes/all-routes`}
+                            className={` ${
+                              theme.colorScheme === "dark"
+                                ? "bps-text-white"
+                                : "bps-text-black"
+                            } bps-no-underline `}
+                          >
+                            <div
+                              className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
+                                propsData?.isOpen && "bps-justify-center"
+                              } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
+                            >
+                              <text
+                                className={` ${
+                                  propsData?.isOpen &&
+                                  "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
+                                }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
+                              >
+                                All Routes
+                              </text>
+                            </div>
+                          </Link>
+                          <Link
+                            href={`/admin/routes/create-new-route`}
+                            className={` ${
+                              theme.colorScheme === "dark"
+                                ? "bps-text-white"
+                                : "bps-text-black"
+                            } bps-no-underline `}
+                          >
+                            <div
+                              className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
+                                propsData?.isOpen && "bps-justify-center"
+                              } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
+                            >
+                              <text
+                                className={` ${
+                                  propsData?.isOpen &&
+                                  "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
+                                }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
+                              >
+                                Create new route
+                              </text>
+                            </div>
+                          </Link>
+                        </div>
+                      </Accordion.Panel>
+                    </Accordion.Item>
+                    <Accordion.Item value={"Regions"}>
+                      <Accordion.Control className=" bps-text-xl">
+                        Regions
+                      </Accordion.Control>
+                      <Accordion.Panel>
+                        <div className=" bps-flex bps-flex-col bps-gap-5">
+                          <Link
+                            href={`/admin/routes/all-regions`}
+                            className={` ${
+                              theme.colorScheme === "dark"
+                                ? "bps-text-white"
+                                : "bps-text-black"
+                            } bps-no-underline `}
+                          >
+                            <div
+                              className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
+                                propsData?.isOpen && "bps-justify-center"
+                              } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
+                            >
+                              <text
+                                className={` ${
+                                  propsData?.isOpen &&
+                                  "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
+                                }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
+                              >
+                                All Regions
+                              </text>
+                            </div>
+                          </Link>
+                          <Link
+                            href={`/admin/routes/create-new-region`}
+                            className={` ${
+                              theme.colorScheme === "dark"
+                                ? "bps-text-white"
+                                : "bps-text-black"
+                            } bps-no-underline `}
+                          >
+                            <div
+                              className={` bps-flex bps-w-min bps-flex-row bps-gap-4 ${
+                                propsData?.isOpen && "bps-justify-center"
+                              } bps-items-center bps-relative bps-cursor-pointer bps-group  `}
+                            >
+                              <text
+                                className={` ${
+                                  propsData?.isOpen &&
+                                  "bps-hidden group-hover:bps-block group-hover:bps-absolute bps-left-12 bps-shadow-lg bps-text-black bps-bg-white bps-p-2 bps-rounded-md"
+                                }   bps-text-xl bps-whitespace-nowrap bps-font-bold`}
+                              >
+                                Create new region
+                              </text>
+                            </div>
+                          </Link>
+                        </div>
+                      </Accordion.Panel>
+                    </Accordion.Item>
+                  </Accordion>
+                ) : (
+                  SidebarMenu?.map((_, i) => (
+                    <SideBarIcon
+                      key={_?.title}
+                      isOpen={propsData?.isOpen}
+                      {..._}
+                    />
+                  ))
+                )}
               </div>
 
               <div className="bps-flex bps-flex-col bps-gap-3">
