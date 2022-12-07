@@ -20,39 +20,32 @@ export default function VerifyPass() {
   const [isCompleted, setIsCompleted] = React.useState(false);
 
   React.useEffect(() => {
-    let unSub = false;
-    if (!unSub) {
-      const res = jwt.decode(token);
+    const res = jwt.decode(token);
 
-      if (res?.QRExpiryTime < new Date().getTime()) {
-        setData((prev) => ({
-          ...prev,
-          ValidQR: false,
-        }));
-      } else {
-        setData((prev) => ({
-          ...prev,
-          ValidQR: true,
-          pass: res,
-        }));
-      }
-
-      if (res?.endDate < new Date().getTime()) {
-        setData((prev) => ({
-          ...prev,
-          ValidPass: false,
-        }));
-      } else {
-        setData((prev) => ({
-          ...prev,
-          ValidPass: true,
-        }));
-      }
+    if (res?.QRExpiryTime < new Date().getTime()) {
+      setData((prev) => ({
+        ...prev,
+        ValidQR: false,
+      }));
+    } else {
+      setData((prev) => ({
+        ...prev,
+        ValidQR: true,
+        pass: res,
+      }));
     }
 
-    return () => {
-      unSub = true;
-    };
+    if (res?.endDate < new Date().getTime()) {
+      setData((prev) => ({
+        ...prev,
+        ValidPass: false,
+      }));
+    } else {
+      setData((prev) => ({
+        ...prev,
+        ValidPass: true,
+      }));
+    }
   }, [token]);
 
   return (

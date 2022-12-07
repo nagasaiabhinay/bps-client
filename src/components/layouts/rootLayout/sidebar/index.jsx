@@ -228,7 +228,7 @@ export default function RootLayoutSidebar(props) {
                       <Accordion.Panel>
                         <div className=" bps-flex bps-flex-col bps-gap-5">
                           <Link
-                            href={`/admin/routes/all-regions`}
+                            href={`/admin/regions/all-regions`}
                             className={` ${
                               theme.colorScheme === "dark"
                                 ? "bps-text-white"
@@ -251,7 +251,7 @@ export default function RootLayoutSidebar(props) {
                             </div>
                           </Link>
                           <Link
-                            href={`/admin/routes/create-new-region`}
+                            href={`/admin/regions/create-new-region`}
                             className={` ${
                               theme.colorScheme === "dark"
                                 ? "bps-text-white"

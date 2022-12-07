@@ -134,54 +134,27 @@ const CreatePass = () => {
     }
   };
 
-  console.log({
-    1: createPassForm.values.passStartDate,
-    2: new Date(
-      createPassForm.getInputProps("passStartDate").value.getTime() +
-        1000 *
-          60 *
-          60 *
-          24 *
-          passTypes.find(
-            (item) =>
-              item.value === createPassForm.getInputProps("passType").value
-          ).days
-    ),
-  });
-
   React.useEffect(() => {
-    let unSub = false;
-    if (!unSub) {
-      setSelectedRoute([]);
-      createPassForm.setFieldValue("passFrom", "");
-      createPassForm.setFieldValue("passTo", "");
-      createPassForm.setFieldValue("passRegion", "");
-    }
-    return () => {
-      unSub = true;
-    };
+    setSelectedRoute([]);
+    createPassForm.setFieldValue("passFrom", "");
+    createPassForm.setFieldValue("passTo", "");
+    createPassForm.setFieldValue("passRegion", "");
   }, [createPassForm.values.passCategory]);
 
   React.useEffect(() => {
-    let unSub = false;
-    if (!unSub) {
-      createPassForm.setFieldValue(
-        "expiryDate",
-        new Date(
-          new Date(createPassForm.values.passStartDate).getTime() +
-            1000 *
-              60 *
-              60 *
-              24 *
-              passTypes.find(
-                (item) => item.value === createPassForm.values.passType
-              ).days
-        )
-      );
-    }
-    return () => {
-      unSub = true;
-    };
+    createPassForm.setFieldValue(
+      "expiryDate",
+      new Date(
+        new Date(createPassForm.values.passStartDate).getTime() +
+          1000 *
+            60 *
+            60 *
+            24 *
+            passTypes.find(
+              (item) => item.value === createPassForm.values.passType
+            ).days
+      )
+    );
   }, [createPassForm.values.passType]);
 
   const getDaysBetweenDates = (startDate, endDate) => {
